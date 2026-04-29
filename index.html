@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EduBot — College Helpdesk</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="page-layout">
+
+  <!-- ── LEFT DASHBOARD PANEL ── -->
+  <div class="dashboard">
+
+    <div class="dash-logo">🎓 EduBot</div>
+    <div class="dash-sub">Smart AI College Helpdesk</div>
+
+    <div class="dash-card">
+      <div class="dash-label">Questions Asked</div>
+      <div class="dash-value" id="stat-questions">0</div>
+    </div>
+
+    <div class="dash-card">
+      <div class="dash-label">Student Mood</div>
+      <div class="dash-value" id="stat-mood" style="font-size:16px;">😐 Neutral</div>
+    </div>
+
+    <div class="dash-card">
+      <div class="dash-label">Language</div>
+      <div class="dash-value" id="stat-lang" style="font-size:16px;">🇬🇧 English</div>
+    </div>
+
+    <div class="dash-card">
+      <div class="dash-label">AI Model</div>
+      <div class="dash-value" style="font-size:13px;">LLaMA 3.3 70B</div>
+      <div class="dash-sub2">via Groq API · Free</div>
+    </div>
+
+    <div class="dash-card">
+      <div class="dash-label">Architecture</div>
+      <div class="dash-value" style="font-size:13px;">RAG + LLM</div>
+      <div class="dash-sub2">FAISS Vector Search</div>
+    </div>
+
+    <div class="dash-card">
+      <div class="dash-label">Knowledge Base</div>
+      <div class="dash-value" style="font-size:13px;">7 Topics</div>
+      <div class="dash-sub2" style="color:#19c37d;">● Active</div>
+    </div>
+
+    <div class="dash-card">
+      <div class="dash-label">Response Mode</div>
+      <div class="dash-value" id="stat-mode" style="font-size:13px;">Waiting...</div>
+    </div>
+
+  </div>
+
+  <!-- ── RIGHT CHAT PANEL ── -->
+  <div class="chat-container">
+
+    <!-- Header -->
+    <div class="header">
+      <div class="avatar">🎓</div>
+      <div class="header-info">
+        <h2>EduBot</h2>
+        <p>College AI Helpdesk · RAG Powered</p>
+      </div>
+      <button onclick="clearChat()" style="
+        background:transparent;border:1px solid #4a4a4a;
+        color:#8e8e8e;font-size:11px;padding:5px 10px;
+        border-radius:8px;cursor:pointer;
+        font-family:'Sora',sans-serif;margin-right:8px;">
+        Clear
+      </button>
+      <div class="status-dot"></div>
+    </div>
+
+    <!-- Chips -->
+    <div class="chips">
+      <button class="chip" onclick="sendMessage('What is the admission process?')">Admissions</button>
+      <button class="chip" onclick="sendMessage('What are the fees?')">Fees</button>
+      <button class="chip" onclick="sendMessage('Tell me about exams')">Exams</button>
+      <button class="chip" onclick="sendMessage('Hostel availability?')">Hostel</button>
+      <button class="chip" onclick="sendMessage('Scholarships available?')">Scholarships</button>
+      <button class="chip" onclick="sendMessage('Placement records?')">Placements</button>
+    </div>
+
+    <!-- Messages -->
+    <div class="messages" id="messages">
+      <div class="message bot">
+        <div class="bot-icon">🤖</div>
+        <div class="bubble" style="color:#8e8e8e;">
+          Hi! I'm EduBot — your college AI helpdesk powered by RAG + LLaMA. Ask me anything!
+        </div>
+      </div>
+    </div>
+
+    <!-- Typing indicator -->
+    <div class="typing" id="typing" style="display:none;">
+      <div class="bot-icon">🤖</div>
+      <div class="bubble">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+
+    <!-- Input -->
+    <div class="input-area">
+      <input
+        type="text"
+        id="user-input"
+        placeholder="Ask your question..."
+        onkeydown="handleKey(event)"
+      />
+      <button onclick="handleSend()">Send ➤</button>
+    </div>
+
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
